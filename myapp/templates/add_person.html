@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="text-3xl font-bold mb-4">Add Person</h2>
+  <form hx-post="{% url 'add_person' %}" hx-target="#people-list" class="mb-4">
+    {% csrf_token %}
+    <div class="mb-2">
+      {{ form.name.label_tag }}
+      {{ form.name }}
+    </div>
+    <div class="mb-2">
+      {{ form.email.label_tag }}
+      {{ form.email }}
+    </div>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Add Person</button>
+  </form>
+  <div id="people-list" hx-get="{% url 'list_people' %}"></div>
+{% endblock %}

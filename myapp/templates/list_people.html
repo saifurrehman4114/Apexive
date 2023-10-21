@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="text-3xl font-bold mb-4">List of People</h2>
+  <form method="GET" hx-target="#people-list" class="mb-4">
+    <div class="flex mb-2">
+      <input type="text" name="name" placeholder="Search by name" class="p-2 border rounded-lg mr-2">
+      <input type="text" name="email" placeholder="Search by email" class="p-2 border rounded-lg mr-2">
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Filter</button>
+    </div>
+  </form>
+  <ul>
+    {% for person in people %}
+      <li class="mb-2 text-lg">{{ person.name }} - {{ person.email }}</li>
+    {% empty %}
+      <li class="text-gray-500">No people found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
