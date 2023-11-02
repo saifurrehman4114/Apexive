@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Person(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    class Meta:
-        app_label = 'myapp'
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField()
+    website = models.URLField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
